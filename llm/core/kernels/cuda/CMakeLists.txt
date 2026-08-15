@@ -1,0 +1,13 @@
+set(TARGET lite_llm_kernels_cuda)
+
+file(GLOB LITE_LLM_KERNELS_CUDA_CPP_SOURCES CONFIGURA_DEPENDS "*.cpp" ".cu")
+add_library(${TARGET} ${LITE_LLM_KERNELS_CUDA_CPP_SOURCES})
+
+target_include_directories(${TARGET} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_compile_features(${TARGET} PUBLIC cxx_std_17)
+
+set_target_properties(${TARGET} PROPERTIES VERSION ${LITE_LLM_VERSION_BASE} SOVERSION ${LITE_LLM_VERSION_MAJOR} MACHO_CURRENT_VERSION 0)
+
+if(BUILD_SHARED_LIBS)
+    set_target_properties(${TARGET} PROPERTIES POSITION_INDEPENDENT_CODE ON)
+endif()
