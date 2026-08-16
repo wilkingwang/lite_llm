@@ -42,6 +42,8 @@ option(BUILD_SHARED_LIBS "build shared libraries" ON)
 option(LITE_LLM_BUILD_TESTS       "lite llm: build tests"       ${LITE_LLM_STANDALONE})
 option(LITE_LLM_BUILD_EXAMPLES    "lite infer: build examples"  ${LITE_LLM_STANDALONE})
 
+find_package(glog CONFIG REQUIRED)
+
 # core library
 add_subdirectory(llm)
 
