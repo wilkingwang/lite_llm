@@ -8,6 +8,8 @@ target_compile_features(${TARGET} PUBLIC cxx_std_17)
 
 set_target_properties(${TARGET} PROPERTIES VERSION ${LITE_LLM_VERSION_BASE} SOVERSION ${LITE_LLM_VERSION_MAJOR} MACHO_CURRENT_VERSION 0)
 
+target_link_libraries(${TARGET} PUBLIC lite_llm_common)
+
 if(BUILD_SHARED_LIBS)
     set_target_properties(${TARGET} PROPERTIES POSITION_INDEPENDENT_CODE ON)
 endif()
