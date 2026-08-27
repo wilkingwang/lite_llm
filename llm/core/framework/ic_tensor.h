@@ -1,5 +1,6 @@
 #pragma once
 #include "ic_memory.h"
+#include <cstdint>
 #include <memory>
 #include <vector>
 
@@ -20,35 +21,30 @@ namespace tensor
     {
         explicit Tensor() = default;
 
-        explicit Tensor(model::DataType dataType, int32_t dim0,
-                        bool bNeedAlloc = false,
-                        std::shared_ptr<comm::MemoryAllocator> alloc = nullptr,
+        explicit Tensor(model::DataType dataType, int32_t dim0, bool bNeedAlloc = false,
+                        std::shared_ptr<comm::MemoryAllocator> alloc = nullptr, void *ptr = nullptr);
+
+        explicit Tensor(model::DataType dataType, int32_t dim0, int32_t dim1, bool bNeedAlloc = false,
+                        std::shared_ptr<comm::MemoryAllocator> alloc = nullptr, void *ptr = nullptr);
+
+        explicit Tensor(model::DataType dataType, int32_t dim0, int32_t dim1, int32_t dim2, bool bNeedAlloc = false,
+                        std::shared_ptr<comm::MemoryAllocator> alloc = nullptr, void *ptr = nullptr);
+
+        explicit Tensor(model::DataType dataType, int32_t dim0, int32_t dim1, int32_t dim2, int32_t dim3,
+                        bool bNeedAlloc = false, std::shared_ptr<comm::MemoryAllocator> alloc = nullptr,
                         void *ptr = nullptr);
 
-        explicit Tensor(model::DataType dataType, int32_t dim0, int32_t dim1,
-                        bool bNeedAlloc = false,
-                        std::shared_ptr<comm::MemoryAllocator> alloc = nullptr,
-                        void *ptr = nullptr);
-
-        explicit Tensor(model::DataType dataType, int32_t dim0, int32_t dim1,
-                        int32_t dim2, bool bNeedAlloc = false,
-                        std::shared_ptr<comm::MemoryAllocator> alloc = nullptr,
-                        void *ptr = nullptr);
-
-        explicit Tensor(model::DataType dataType, std::vector<int32_t> dims,
-                        bool bNeedAlloc = false,
-                        std::shared_ptr<comm::MemoryAllocator> alloc = nullptr,
-                        void *ptr = nullptr);
+        explicit Tensor(model::DataType dataType, std::vector<int32_t> dims, bool bNeedAlloc = false,
+                        std::shared_ptr<comm::MemoryAllocator> alloc = nullptr, void *ptr = nullptr);
 
         void cpu();
 #ifdef ENABLE_CUDA
-        void cuda(cudaStream_t = nullptr);
+        void cuda(cudaStream_t stream = nullptr);
 #endif
 
         bool IsEmpty() const;
 
-        void InitBuf(std::shared_ptr<comm::MemoryAllocator> alloc,
-                     model::DataType dateType, bool bNeedAlloc,
+        void InitBuf(std::shared_ptr<comm::MemoryAllocator> alloc, model::DataType dateType, bool bNeedAlloc,
                      void *ptr) const;
 
         template <typename T> T *Ptr();
@@ -79,8 +75,7 @@ namespace tensor
 
         model::DeviceType GetDeviceType() const;
 
-        bool Allocate(std::shared_ptr<comm::MemoryAllocator> allocator,
-                      bool bNeedRealloc = false);
+        bool Allocate(std::shared_ptr<comm::MemoryAllocator> allocator, bool bNeedRealloc = false);
 
         template <typename T> T *Ptr(int64_t index);
 

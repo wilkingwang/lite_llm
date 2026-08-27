@@ -1,13 +1,9 @@
 #pragma once
 
 #include <cassert>
-#include <limits>
 #include <optional>
 #include <re2/re2.h>
-#include <regex>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 #include "ic_unordered_dense.h"

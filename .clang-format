@@ -14,3 +14,6 @@ BreakBeforeBraces: Allman
 
 # 允许将简短的函数放在单行中（必须设为 None，强制换行）
 AllowShortFunctionsOnASingleLine: None
+
+# 修改每行代码最大字符数限制
+ColumnLimit: 120
