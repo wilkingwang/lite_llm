@@ -3,6 +3,8 @@ set(TARGET lite_llm_framework)
 file(GLOB LITE_LLM_FRAMEWORK_CPP_SOURCES CONFIGURA_DEPENDS "*.cpp")
 add_library(${TARGET} ${LITE_LLM_FRAMEWORK_CPP_SOURCES})
 
+# target_compile_definitions(${TARGET} PRIVATE ENABLE_CUDA)
+
 target_include_directories(${TARGET} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_compile_features(${TARGET} PUBLIC cxx_std_17)
 

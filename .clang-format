@@ -1,0 +1,16 @@
+# 缩进的空格数为4
+IndentWidth: 4
+
+# 彻底将 Tab 转换为连续的空格（不会在代码中写入真实 Tab）
+UseTab: Never
+
+# 连续两行代码的对齐缩进（如函数参数换行对齐），通常也设为 4
+TabWidth: 4
+
+NamespaceIndentation: All
+
+# 将大括号换行风格设置为 Allman 风格（即大括号均单独起一行）
+BreakBeforeBraces: Allman
+
+# 允许将简短的函数放在单行中（必须设为 None，强制换行）
+AllowShortFunctionsOnASingleLine: None

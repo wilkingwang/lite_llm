@@ -100,4 +100,4 @@ namespace comm
         os << status.getErrMsg();
         return os;
     }
-}
+} // namespace comm

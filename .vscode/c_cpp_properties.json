@@ -3,7 +3,9 @@
         {
             "name": "Linux",
             "includePath": [
-                "${default}"
+                "${default}",
+                "/mnt/d/01Workspace/lite_llm/llm/common",
+                "/mnt/d/01Workspace/lite_llm/llm/core/framework"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

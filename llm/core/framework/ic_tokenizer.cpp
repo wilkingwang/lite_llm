@@ -6,6 +6,12 @@
 
 namespace tiktoken
 {
+    /**
+     * @brief BPE合并，给定一段字符串和rank表，反复找出rank最小的相邻字节对进行合并
+     * @param piece 字符串
+     * @param ranks rank表
+     * @return 每段的起止位置
+     */
     static auto mergeBytePair(const std::string &piece,
                               const ankerl::unordered_dense::map<std::string, int> &ranks,
                               std::function<int(int, int)> func) -> std::vector<int>
@@ -104,6 +110,10 @@ namespace tiktoken
         return out;
     }
 
+    /**
+     * @brief 将Merge的每段字符串映射成token id
+     * @return token ids
+     */
     static auto encodeBytePair(const std::string &piece,
                                const ankerl::unordered_dense::map<std::string, int> &ranks) -> std::vector<int>
     {
@@ -160,7 +170,7 @@ namespace tiktoken
         }
     }
 
-    auto TikToken::encode_ordinary(const std::string &text) const -> std::vector<int>
+    auto TikToken::encodeOrdinary(const std::string &text) const -> std::vector<int>
     {
         return ordinaryNativeEncode(text);
     }
@@ -170,7 +180,7 @@ namespace tiktoken
         return nativeEncode(text, specialTokenEncoder).first;
     }
 
-    auto TikToken::encode_single_piece(const std::string &text) const -> std::vector<int>
+    auto TikToken::encodeSinglePiece(const std::string &text) const -> std::vector<int>
     {
         auto iter = encoder.find(text);
         if (iter != encoder.end())
