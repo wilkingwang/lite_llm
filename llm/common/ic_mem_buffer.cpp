@@ -2,13 +2,8 @@
 
 namespace comm
 {
-    MemBuffer::MemBuffer(size_t byteSize,
-                         std::shared_ptr<MemoryAllocator> allocator,
-                         void *buffer, bool bUseExternal)
-        : byteSize(byteSize),
-          allocator(allocator),
-          buffer(buffer),
-          bUseExternal(bUseExternal)
+    MemBuffer::MemBuffer(size_t byteSize, std::shared_ptr<MemoryAllocator> allocator, void *buffer, bool bUseExternal)
+        : byteSize(byteSize), allocator(allocator), buffer(buffer), bUseExternal(bUseExternal)
     {
         if (!this->buffer && this->allocator)
         {
@@ -66,4 +61,4 @@ namespace comm
         CHECK(memBuffer != nullptr || memBuffer->buffer != nullptr);
         return true;
     }
-}
+} // namespace comm

@@ -9,11 +9,10 @@ namespace comm
 {
     class MemBuffer : public NoCopyable, std::enable_shared_from_this<MemBuffer>
     {
-    public:
+      public:
         explicit MemBuffer() = default;
 
-        explicit MemBuffer(size_t byteSize,
-                           std::shared_ptr<MemoryAllocator> allocator = nullptr,
+        explicit MemBuffer(size_t byteSize, std::shared_ptr<MemoryAllocator> allocator = nullptr,
                            void *buffer = nullptr, bool bUseExternal = false);
 
         virtual ~MemBuffer();
@@ -64,11 +63,11 @@ namespace comm
             return this->bUseExternal;
         }
 
-    private:
+      private:
         size_t byteSize = 0;
         void *buffer = nullptr;
         bool bUseExternal = false;
         std::shared_ptr<MemoryAllocator> allocator;
         model::DeviceType deviceType = DeviceType::iDeviceUnknown;
     };
-}
+} // namespace comm

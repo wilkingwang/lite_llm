@@ -2,6 +2,7 @@
 #include "ic_memory.h"
 #include <cstdint>
 #include <memory>
+#include <regex>
 #include <vector>
 
 #include <glog/logging.h>
@@ -45,7 +46,7 @@ namespace tensor
         bool IsEmpty() const;
 
         void InitBuf(std::shared_ptr<comm::MemoryAllocator> alloc, model::DataType dateType, bool bNeedAlloc,
-                     void *ptr) const;
+                     void *ptr);
 
         template <typename T> T *Ptr();
 
@@ -67,11 +68,11 @@ namespace tensor
 
         std::vector<size_t> Strides() const;
 
-        bool Assign(std::shared_ptr<comm::MemBuffer> buffer);
+        bool Assign(std::shared_ptr<comm::MemBuffer> buf);
 
-        void Reset(model::DataType data_type, const std::vector<int32_t> &dims);
+        void Reset(model::DataType dType, const std::vector<int32_t> &dims);
 
-        void SetDeviceType(model::DeviceType device_type) const;
+        void SetDeviceType(model::DeviceType deviceType) const;
 
         model::DeviceType GetDeviceType() const;
 
@@ -93,4 +94,57 @@ namespace tensor
         std::shared_ptr<comm::MemBuffer> buffer;
         model::DataType dataType = model::DataType::iDataTypeUnknown;
     };
+
+    template <typename T> T *Tensor::Ptr()
+    {
+        if (!buffer)
+        {
+            return nullptr;
+        }
+
+        return reinterpret_cast<T *>(buffer->ptr());
+    }
+
+    template <typename T> const T *Tensor::Ptr() const
+    {
+        if (!buffer)
+        {
+            return nullptr;
+        }
+
+        return const_cast<const T *>(reinterpret_cast<T *>(buffer->ptr()));
+    }
+
+    template <typename T> T *Tensor::Ptr(int64_t index)
+    {
+        CHECK(buffer != nullptr && buffer->ptr() != nullptr)
+            << "The data area buffer of this tensor is empty or ti points to a null pointer.";
+        return reinterpret_cast<const T *>(buffer->ptr()) + index;
+    }
+
+    template <typename T> const T *Tensor::Ptr(int64_t index) const
+    {
+        CHECK(buffer != nullptr && buffer->ptr() != nullptr)
+            << "The data area buffer of this tensor is empty or ti points to a null pointer.";
+
+        return const_cast<const T *>(reinterpret_cast<const T *>(buffer->ptr())) + index;
+    }
+
+    template <typename T> T &Tensor::Index(int64_t offset)
+    {
+        CHECK_GE(offset, 0);
+        CHECK_LT(offset, this->Size());
+
+        T &val = *(reinterpret_cast<T *>(buffer->ptr()) + offset);
+        return val;
+    }
+
+    template <typename T> const T &Tensor::Index(int64_t offset) const
+    {
+        CHECK_GE(offset, 0);
+        CHECK_LT(offset, this->Size());
+
+        const T &val = *(reinterpret_cast<T *>(buffer->ptr()) + offset);
+        return val;
+    }
 } // namespace tensor
