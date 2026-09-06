@@ -2,7 +2,6 @@
 #include "ic_memory.h"
 #include <cstdint>
 #include <memory>
-#include <regex>
 #include <vector>
 
 #include <glog/logging.h>
@@ -20,6 +19,7 @@ namespace tensor
 {
     class Tensor
     {
+      public:
         explicit Tensor() = default;
 
         explicit Tensor(model::DataType dataType, int32_t dim0, bool bNeedAlloc = false,
@@ -38,9 +38,9 @@ namespace tensor
         explicit Tensor(model::DataType dataType, std::vector<int32_t> dims, bool bNeedAlloc = false,
                         std::shared_ptr<comm::MemoryAllocator> alloc = nullptr, void *ptr = nullptr);
 
-        void cpu();
+        void Cpu();
 #ifdef ENABLE_CUDA
-        void cuda(cudaStream_t stream = nullptr);
+        void Cuda(cudaStream_t stream = nullptr);
 #endif
 
         bool IsEmpty() const;

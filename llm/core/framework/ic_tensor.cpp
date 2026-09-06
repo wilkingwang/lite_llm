@@ -150,7 +150,7 @@ namespace tensor
         }
     }
 
-    void Tensor::cpu()
+    void Tensor::Cpu()
     {
         CHECK_NE(buffer, nullptr);
         const model::DeviceType deviceType = this->GetDeviceType();
@@ -174,7 +174,7 @@ namespace tensor
         }
     }
 #ifdef ENABLE_CUDA
-    void Tensor::cuda(cudaStream_t stream = nullptr)
+    void Tensor::Cuda(cudaStream_t stream = nullptr)
     {
         CHECK_NE(buffer, nullptr);
         const model::DeviceType deviceType = this->GetDeviceType();
