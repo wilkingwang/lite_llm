@@ -19,7 +19,7 @@
 #include "ic_tokenizer.h"
 #include "ic_unordered_dense.h"
 
-namespace kernel
+namespace model
 {
     class EncodeBaseLayer : Layer
     {
@@ -94,4 +94,4 @@ namespace kernel
       public:
         explicit QwenEncodeLayer(const std::string &modelPath, bool bHasBOS, bool bHasEOS);
     };
-} // namespace kernel
+} // namespace model

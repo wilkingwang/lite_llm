@@ -11,7 +11,7 @@
 #include "ic_cuda_config.h"
 #include "ic_tensor.h"
 
-namespace kernel
+namespace model
 {
     class Layer : public BaseLayer
     {
@@ -110,4 +110,4 @@ namespace kernel
         tensor::Tensor scales;
         std::vector<tensor::Tensor> weights;
     };
-} // namespace kernel
+} // namespace model

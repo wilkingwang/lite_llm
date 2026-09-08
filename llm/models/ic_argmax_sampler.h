@@ -1,8 +1,8 @@
 #pragma once
-
 #include "ic_common.h"
 #include "ic_sampler.h"
 #include <cstddef>
+
 namespace sampler
 {
     class ICArgmaxSampler : public ICSampler

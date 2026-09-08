@@ -17,7 +17,7 @@
 #include "ic_unicode.h"
 #include "ic_unordered_dense.h"
 
-namespace kernel
+namespace model
 {
     SPEEncodeLayer::SPEEncodeLayer(std::string modelPath, bool bHasBOS, bool bHasEOS)
         : EncodeBaseLayer(std::move(modelPath), bHasBOS, bHasEOS)
@@ -240,4 +240,4 @@ namespace kernel
         tokenNum = encoder.size() + specialTokens.size();
         tikToken = std::make_unique<tiktoken::TikToken>(encoder, specialTokens, PAT_STR);
     }
-} // namespace kernel
+} // namespace model

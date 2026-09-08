@@ -3,7 +3,7 @@
 #include "ic_common.h"
 #include "ic_layer.h"
 
-namespace kernel
+namespace model
 {
     ICEmbeddingLayer::ICEmbeddingLayer(model::DeviceType deviceType, int32_t dim, int32_t seqLen, int32_t vocabSize)
         : dim(dim), seqLen(seqLen), vocabSize(vocabSize),
@@ -55,7 +55,7 @@ namespace kernel
         }
 
         // TODO
-        
+
         return comm::Success();
     }
-} // namespace kernel
+} // namespace model

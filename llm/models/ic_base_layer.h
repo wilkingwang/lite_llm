@@ -7,7 +7,7 @@
 #include "ic_common.h"
 #include "ic_tensor.h"
 
-namespace kernel
+namespace model
 {
     class Layer;
 
@@ -93,4 +93,4 @@ namespace kernel
         model::DataType dataType = model::DataType::iDataTypeUnknown;
         model::DeviceType deviceType = model::DeviceType::iDeviceUnknown;
     };
-} // namespace kernel
+} // namespace model

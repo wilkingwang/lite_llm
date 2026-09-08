@@ -6,7 +6,7 @@
 #include <cstdint>
 #include <utility>
 
-namespace kernel
+namespace model
 {
     class ICEmbeddingOutput
     {
@@ -36,4 +36,4 @@ namespace kernel
         int32_t seqLen = 0;
         int32_t vocabSize = 0;
     };
-} // namespace kernel
+} // namespace model

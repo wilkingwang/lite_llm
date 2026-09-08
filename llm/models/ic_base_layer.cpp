@@ -1,7 +1,7 @@
 #include "ic_base_layer.h"
 #include "ic_common.h"
 
-namespace kernel
+namespace model
 {
     BaseLayer::BaseLayer(model::DeviceType deviceType, model::DataType dataType, LayerType layerType,
                          std::string layerNum)
@@ -50,4 +50,4 @@ namespace kernel
         this->deviceType = deviceType;
     }
 
-} // namespace kernel
+} // namespace model

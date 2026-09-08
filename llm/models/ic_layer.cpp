@@ -13,7 +13,7 @@
 #include "ic_mem_buffer.h"
 #include "ic_tensor.h"
 
-namespace kernel
+namespace model
 {
     Layer::Layer(model::DeviceType deviceType, LayerType layerType, std::string layerName)
         : BaseLayer(deviceType, model::DataType::iDataTypeFP32, layerType, std::move(layerName))
@@ -372,4 +372,4 @@ namespace kernel
         return static_cast<int32_t>(this->scales.Size());
     }
 
-} // namespace kernel
+} // namespace model
