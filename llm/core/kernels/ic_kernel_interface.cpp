@@ -1,4 +1,5 @@
 #include "ic_kernel_interface.h"
+#include "ic_add.h"
 #include "ic_common.h"
 
 namespace kernel
@@ -8,7 +9,7 @@ namespace kernel
         switch (deviceType)
         {
         case model::DeviceType::iDeviceCPU:
-            return nullptr;
+            return kernel::cpu::Add;
         case model::DeviceType::iDeviceCUDA:
             return nullptr;
         default:
